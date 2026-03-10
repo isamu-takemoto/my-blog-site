@@ -1,0 +1,15 @@
+---
+import { SITE_TITLE } from '../consts';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title={`このブログについて | ${SITE_TITLE}`} description="このブログについて">
+  <h1>このブログについて</h1>
+  <p>
+    データ基盤の構築・運用を軸に、プロダクト開発や AI 活用に取り組むフリーランスエンジニア takeisa の技術メモ置き場です。
+  </p>
+  <p>
+    「作って・動かして・振り返る」サイクルを大事にしていて、実際に手を動かして気づいたこと、ハマったこと、うまくいったことを中心に書いています。
+    きれいにまとまった記事よりも、現場感のある記録を残していきたいと思っています。
+  </p>
+</BaseLayout>
