@@ -7,19 +7,16 @@ export default config({
   collections: {
     blog: collection({
       label: 'ブログ記事',
-      slugField: 'title',
+      slugField: 'slug',
+      columns: ['title', 'pubDate'],
       path: 'src/content/blog/*',
       format: { contentField: 'content' },
       schema: {
-        title: fields.slug({ name: { label: 'タイトル' } }),
+        slug: fields.text({ label: 'スラグ（URL）' }),
+        title: fields.text({ label: 'タイトル' }),
         description: fields.text({ label: '説明', multiline: true }),
         pubDate: fields.date({ label: '公開日' }),
-        updatedDate: fields.date({ label: '更新日' }),
-        heroImage: fields.image({
-          label: 'サムネイル画像',
-          directory: 'src/assets',
-          publicPath: '../../assets/',
-        }),
+        updatedDate: fields.date({ label: '更新日', validation: { isRequired: false } }),
         tags: fields.array(fields.text({ label: 'タグ' }), {
           label: 'タグ',
           itemLabel: (props) => props.value,
