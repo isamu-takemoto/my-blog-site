@@ -1,62 +1,67 @@
-# Astro Starter Kit: Blog
+# takeisa.dev
 
-```sh
-npm create astro@latest -- --template blog
+個人技術ブログ。Astro + Keystatic CMS で構築。
+
+## 技術スタック
+
+- [Astro](https://astro.build/) v5 — SSR モード
+- [Keystatic](https://keystatic.com/) — ローカルファイルベース CMS
+- [Tailwind CSS](https://tailwindcss.com/) v4
+- [@astrojs/node](https://docs.astro.build/en/guides/integrations-guide/node/) — サーバーアダプター
+- デプロイ: [Vercel](https://vercel.com/)
+
+## プロジェクト構成
+
 ```
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-Features:
-
-- ✅ Minimal styling (make it your own!)
-- ✅ 100/100 Lighthouse performance
-- ✅ SEO-friendly with canonical URLs and OpenGraph data
-- ✅ Sitemap support
-- ✅ RSS Feed support
-- ✅ Markdown & MDX support
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-├── public/
 ├── src/
-│   ├── components/
-│   ├── content/
-│   ├── layouts/
-│   └── pages/
+│   ├── components/        # Astro/React コンポーネント
+│   ├── content/
+│   │   └── blog/          # 記事ファイル (.mdx)
+│   ├── layouts/           # ページレイアウト
+│   ├── pages/             # ルーティング
+│   ├── styles/            # グローバル CSS
+│   ├── content.config.ts  # Content Collections スキーマ
+│   └── middleware.ts      # /keystatic の Basic 認証
+├── keystatic.config.ts    # Keystatic CMS 設定
 ├── astro.config.mjs
-├── README.md
-├── package.json
-└── tsconfig.json
+└── .env                   # 環境変数（Git 管理外）
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## 記事の書き方
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+記事は `src/content/blog/{slug}.mdx` に配置する。
 
-The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
+```yaml
+---
+slug: my-article
+title: 記事タイトル
+description: 説明文
+pubDate: "2026-01-01"
+tags:
+  - Astro
+---
 
-Any static assets, like images, can be placed in the `public/` directory.
+本文をここに書く
+```
 
-## 🧞 Commands
+**CMS を使う場合：** `npm run dev` 後に `http://localhost:4321/keystatic` にアクセス。
 
-All commands are run from the root of the project, from a terminal:
+## 環境変数
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+`.env` ファイルをプロジェクトルートに作成する（Git 管理外）。
 
-## 👀 Want to learn more?
+```
+CMS_USER=admin
+CMS_PASSWORD=（任意のパスワード）
+```
 
-Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+本番（Vercel）では Environment Variables に同じキーを設定する。
 
-## Credit
+## コマンド
 
-This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
+| コマンド | 内容 |
+| :--- | :--- |
+| `npm install` | 依存関係のインストール |
+| `npm run dev` | 開発サーバー起動 (`localhost:4321`) |
+| `npm run build` | 本番ビルド |
+| `npm run preview` | ビルドのプレビュー |
