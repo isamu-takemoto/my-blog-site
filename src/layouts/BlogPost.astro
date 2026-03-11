@@ -6,15 +6,17 @@ import { SITE_TITLE } from '../consts';
 import BaseLayout from './BaseLayout.astro';
 
 type Props = CollectionEntry<'blog'>['data'] & {
+  postId?: string;
   prevPost?: CollectionEntry<'blog'> | null;
   nextPost?: CollectionEntry<'blog'> | null;
   relatedPosts?: CollectionEntry<'blog'>[];
 };
 
-const { title, description, pubDate, updatedDate, heroImage, tags, prevPost, nextPost, relatedPosts } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, tags, postId, prevPost, nextPost, relatedPosts } = Astro.props;
+const ogImageUrl = postId && Astro.site ? new URL(`/og/${postId}.png`, Astro.site).toString() : undefined;
 ---
 
-<BaseLayout title={`${title} | ${SITE_TITLE}`} description={description}>
+<BaseLayout title={`${title} | ${SITE_TITLE}`} description={description} ogImageUrl={ogImageUrl}>
   <article>
     {heroImage && (
       <div class="hero-image">
