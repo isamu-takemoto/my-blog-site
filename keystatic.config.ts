@@ -1,9 +1,16 @@
 import { config, fields, collection } from '@keystatic/core';
 
 export default config({
-  storage: {
-    kind: 'local',
-  },
+  storage:
+    process.env.NODE_ENV === 'production'
+      ? {
+          kind: 'github',
+          repo: 'isamu-takemoto/my-blog-site',
+          branchPrefix: 'keystatic/',
+        }
+      : {
+          kind: 'local',
+        },
   collections: {
     blog: collection({
       label: 'ブログ記事',
