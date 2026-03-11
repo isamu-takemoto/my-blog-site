@@ -15,6 +15,13 @@ export default defineConfig({
   adapter: vercel(),
   integrations: [mdx(), sitemap(), react(), keystatic()],
 
+  security: {
+    allowedDomains: [
+      { hostname: 'takeisa.dev', protocol: 'https' },
+      { hostname: 'www.takeisa.dev', protocol: 'https' },
+    ],
+  },
+
   vite: {
     plugins: [tailwindcss()],
   },
