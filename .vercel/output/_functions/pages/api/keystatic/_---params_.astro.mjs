@@ -87,7 +87,11 @@ function tryOrUndefined(fn) {
 }
 
 const config = config$1({
-  storage: {
+  storage: process.env.NODE_ENV === "production" ? {
+    kind: "github",
+    repo: "isamu-takemoto/my-blog-site",
+    branchPrefix: "keystatic/"
+  } : {
     kind: "local"
   },
   collections: {
