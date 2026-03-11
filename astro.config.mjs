@@ -1,7 +1,7 @@
 // @ts-check
 
 import mdx from '@astrojs/mdx';
-import node from '@astrojs/node';
+import vercel from '@astrojs/vercel';
 import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 import keystatic from '@keystatic/astro';
@@ -12,7 +12,7 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   site: 'https://takeisa.dev',
   output: 'server',
-  adapter: node({ mode: 'standalone' }),
+  adapter: vercel(),
   integrations: [mdx(), sitemap(), react(), keystatic()],
 
   vite: {
