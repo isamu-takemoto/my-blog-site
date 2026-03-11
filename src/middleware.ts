@@ -1,8 +1,13 @@
 import { defineMiddleware } from 'astro:middleware';
 
+// ローカル開発時のみ Basic 認証で保護（本番は Keystatic GitHub 認証に委譲）
 const PROTECTED_PREFIXES = ['/keystatic', '/api/keystatic'];
 
 export const onRequest = defineMiddleware((context, next) => {
+  if (import.meta.env.PROD) {
+    return next();
+  }
+
   const url = new URL(context.request.url);
   const isProtected = PROTECTED_PREFIXES.some((prefix) => url.pathname.startsWith(prefix));
 
@@ -14,7 +19,6 @@ export const onRequest = defineMiddleware((context, next) => {
   const expectedPass = import.meta.env.CMS_PASSWORD;
 
   if (!expectedPass) {
-    // CMS_PASSWORD 未設定の場合はアクセス拒否（本番で環境変数を強制）
     return new Response('CMS_PASSWORD environment variable is not set.', { status: 503 });
   }
 
