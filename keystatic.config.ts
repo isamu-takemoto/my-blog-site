@@ -41,7 +41,13 @@ export default config({
           label: 'タグ',
           itemLabel: (props) => props.value,
         }),
-        content: fields.mdx({ label: '本文' }),
+        content: fields.mdx({
+          label: '本文',
+          images: {
+            directory: 'public/images/blog',
+            publicPath: '/images/blog/',
+          },
+        }),
       },
     }),
   },
