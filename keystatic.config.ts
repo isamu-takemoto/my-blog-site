@@ -18,7 +18,9 @@ export default config({
       columns: ['title', 'pubDate'],
       path: 'src/content/blog/*',
       format: { contentField: 'content' },
-      previewUrl: '/blog/{slug}',
+      previewUrl: process.env.NODE_ENV === 'production'
+        ? 'https://takeisa.dev/blog/{slug}'
+        : '/blog/{slug}',
       schema: {
         slug: fields.text({ label: 'スラグ（URL）' }),
         title: fields.text({ label: 'タイトル' }),
