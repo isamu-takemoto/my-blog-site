@@ -18,12 +18,14 @@ export default config({
       columns: ['title', 'pubDate'],
       path: 'src/content/blog/*',
       format: { contentField: 'content' },
+      previewUrl: '/blog/{slug}',
       schema: {
         slug: fields.text({ label: 'スラグ（URL）' }),
         title: fields.text({ label: 'タイトル' }),
         description: fields.text({ label: '説明', multiline: true }),
         pubDate: fields.date({ label: '公開日' }),
         updatedDate: fields.date({ label: '更新日', validation: { isRequired: false } }),
+        draft: fields.checkbox({ label: '下書き', defaultValue: true }),
         tags: fields.array(fields.text({ label: 'タグ' }), {
           label: 'タグ',
           itemLabel: (props) => props.value,
