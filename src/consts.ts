@@ -12,5 +12,6 @@ export const PROFILE = {
     { label: 'GitHub', url: 'https://github.com/isamu-takemoto' },
     { label: 'X', url: 'https://x.com/takeisaa' },
     { label: 'Note', url: 'https://note.com/isamu30' },
+    { label: 'YouTrust', url: 'https://youtrust.jp/users/isamutakemoto' },
   ],
 };

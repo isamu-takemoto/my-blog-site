@@ -1,0 +1,269 @@
+---
+export const prerender = true;
+import { SITE_TITLE, PROFILE } from '../consts';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const iconMap: Record<string, string> = {
+  GitHub: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" width="18" height="18"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>`,
+  X: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" width="18" height="18"><path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/></svg>`,
+  Note: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width="18" height="18"><rect x="0.5" y="0.5" width="19" height="19" rx="4" ry="4" fill="white" stroke="#d1d5db" stroke-width="1"/><g transform="translate(1.25, -1.25)"><path fill="currentColor" d="M4.5 15.5V7h2.4v1.4C7.4 7.5 8.2 7 9.2 7c2.1 0 3.8 1.7 3.8 4v4.5h-2.4v-4c0-1.1-.8-2-1.9-2s-1.9.9-1.9 2v4H4.5z"/></g></svg>`,
+};
+---
+
+<BaseLayout title={`Profile | ${SITE_TITLE}`} description="takeisa のプロフィール">
+  <div class="profile">
+    <div class="hero">
+      <img src={PROFILE.avatar} alt={PROFILE.name} class="avatar" />
+      <div class="hero-text">
+        <h1>{PROFILE.name}</h1>
+        <p class="catchcopy">データ基盤からプロダクトまで作るエンジニア</p>
+      </div>
+    </div>
+
+    <section>
+      <h2>経歴・ストーリー</h2>
+      <div class="interview">
+        <div class="interview-item">
+          <p class="interview-q">これまでのキャリア</p>
+          <p>東京電機大学 卒業後、食品メーカー・ガーデンデザイナーを経てコンサルタントへ転身しました。顧客課題の解決に向き合う中で、「自分で手を動かして仕組みを作る力が必要だ」と感じ、独学でコードを書き始め、2019年にエンジニアへ転身しました。</p>
+        </div>
+        <div class="interview-item">
+          <p>大手人材系サービスのプロダクト開発を経て、ベンチャーのウェルネス系バーティカル SaaS にて POS レジの立ち上げや会計・決済機能のスケールに携わりました。プロダクト開発を続ける中で「作って終わり」ではないと気づきます。あるお客様から「DX した先が見えていない」という声を聞き、データ活用への関心が高まりました。データは資産。作るだけでなく、活用するところまで支援したいと思いデータエンジニアに転身しました。マルチテナント環境・大規模データ基盤の構築・刷新・運用改善を経験し、データ基盤からプロダクトまで一気通貫で関わることができる今に至ります。</p>
+        </div>
+        <div class="interview-item">
+          <p class="interview-q">フリーランスになったきっかけ</p>
+          <p>2026年よりフリーランスとして活動中。挑戦する組織や人の伴走者でありたいと思っています。お気軽に <a href="https://x.com/takeisaa" target="_blank" rel="noopener noreferrer">X の DM</a> からご連絡ください。</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>スキル・専門領域</h2>
+      <div class="skill-group">
+        <h3>できること</h3>
+        <ul class="tags">
+          {[
+            'データ基盤の設計・構築・運用',
+            'ELT/ETL パイプライン開発',
+            'プロダクト開発',
+            'AI 活用の仕組み作り',
+            '開発フロー整備',
+            '採用支援',
+          ].map(tag => (
+            <li class="tag">{tag}</li>
+          ))}
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h3>言語</h3>
+        <ul class="tags">
+          {['Ruby', 'Python', 'TypeScript', 'JavaScript'].map(tag => (
+            <li class="tag">{tag}</li>
+          ))}
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h3>データ</h3>
+        <ul class="tags">
+          {['BigQuery', 'dbt', 'TROCCO'].map(tag => (
+            <li class="tag">{tag}</li>
+          ))}
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h3>インフラ・クラウド</h3>
+        <ul class="tags">
+          {['GCP', 'AWS'].map(tag => (
+            <li class="tag">{tag}</li>
+          ))}
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h3>その他</h3>
+        <ul class="tags">
+          {['Cursor', 'Claude Code', 'アジャイル開発'].map(tag => (
+            <li class="tag">{tag}</li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>哲学・価値観</h2>
+      <ul class="values">
+        <li>人生は有限。今この瞬間を精一杯生きる。</li>
+        <li>価値提供のために日々強くなる。スキルも健康も。</li>
+        <li>小さなことにも感動できる人でいる。</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>リンク</h2>
+      <ul class="links">
+        {PROFILE.links.map(link => (
+          <li>
+            <a href={link.url} target="_blank" rel="noopener noreferrer" aria-label={link.label}>
+              {iconMap[link.label]
+                ? <span set:html={iconMap[link.label]} />
+                : link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .profile {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5em;
+  }
+
+  .hero {
+    display: flex;
+    align-items: center;
+    gap: 1.5em;
+  }
+
+  .avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  .hero-text h1 {
+    margin: 0 0 0.25em;
+    font-size: 1.6em;
+  }
+
+  .catchcopy {
+    margin: 0;
+    color: rgb(var(--gray));
+    font-size: 0.95em;
+  }
+
+  .interview {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+  }
+
+  .interview-q {
+    font-weight: 700;
+    color: rgb(var(--black));
+    margin: 0 0 0.4em;
+    font-size: 0.95em;
+  }
+
+  .interview-item p:not(.interview-q) {
+    margin: 0;
+    color: rgb(var(--gray-dark));
+    line-height: 1.8;
+  }
+
+  .career-current {
+    margin: 1.5em 0 0;
+    color: rgb(var(--gray));
+    font-size: 0.9em;
+  }
+
+  section h2 {
+    font-size: 1.1em;
+    font-weight: 700;
+    border-bottom: 2px solid rgb(var(--gray-light));
+    padding-bottom: 0.4em;
+    margin-bottom: 1em;
+  }
+
+  section p {
+    margin: 0 0 0.8em;
+    line-height: 1.8;
+    color: rgb(var(--gray-dark));
+  }
+
+  .skill-group {
+    margin-bottom: 1em;
+  }
+
+  .skill-group h3 {
+    font-size: 0.82em;
+    font-weight: 600;
+    color: rgb(var(--gray));
+    margin: 0 0 0.5em;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5em;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .tag {
+    background: rgb(var(--gray-light));
+    color: rgb(var(--gray-dark));
+    font-size: 0.85em;
+    padding: 0.3em 0.8em;
+    border-radius: 999px;
+  }
+
+  .links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 1.2em;
+  }
+
+  .links a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95em;
+    display: flex;
+    align-items: center;
+    gap: 0.35em;
+  }
+
+  .links a:hover {
+    text-decoration: underline;
+  }
+
+  .values {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6em;
+  }
+
+  .values li {
+    padding-left: 1.2em;
+    position: relative;
+    color: rgb(var(--gray-dark));
+    line-height: 1.7;
+  }
+
+  .values li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: rgb(var(--gray));
+  }
+
+  @media (max-width: 480px) {
+    .hero {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+</style>
