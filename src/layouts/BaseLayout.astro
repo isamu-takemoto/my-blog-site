@@ -10,9 +10,10 @@ interface Props {
   title: string;
   description: string;
   ogImageUrl?: string;
+  showSidebar?: boolean;
 }
 
-const { title, description, ogImageUrl } = Astro.props;
+const { title, description, ogImageUrl, showSidebar = true } = Astro.props;
 ---
 
 <!doctype html>
@@ -24,9 +25,11 @@ const { title, description, ogImageUrl } = Astro.props;
   <body>
     <Header />
     <div class="page-wrapper">
-      <aside class="sidebar">
-        <ProfileCard />
-      </aside>
+      {showSidebar && (
+        <aside class="sidebar">
+          <ProfileCard />
+        </aside>
+      )}
       <main>
         <slot />
       </main>
