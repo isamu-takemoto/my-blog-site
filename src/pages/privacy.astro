@@ -1,0 +1,59 @@
+---
+export const prerender = true;
+import { SITE_TITLE } from '../consts';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title={`プライバシーポリシー | ${SITE_TITLE}`} description="プライバシーポリシー">
+  <div class="privacy">
+    <h1>プライバシーポリシー</h1>
+    <p>竹本勇（以下「当方」）は、お問い合わせフォームを通じて取得した個人情報について、以下のとおり取り扱います。</p>
+
+    <h2>収集する情報</h2>
+    <p>お問い合わせフォームにご入力いただいた情報（お名前、会社名、メールアドレス、お問い合わせ内容等）を収集します。</p>
+
+    <h2>利用目的</h2>
+    <p>収集した個人情報は、お問い合わせへの返信・ご連絡のみを目的として利用します。それ以外の目的には使用しません。</p>
+
+    <h2>第三者への提供</h2>
+    <p>収集した個人情報は、法令に基づく場合を除き、第三者に提供・開示することはありません。</p>
+
+    <h2>個人情報の管理</h2>
+    <p>収集した個人情報は適切に管理し、漏洩・紛失・不正アクセスの防止に努めます。</p>
+
+    <h2>お問い合わせ</h2>
+    <p>個人情報の取り扱いに関するご質問・ご要望は、<a href="https://docs.google.com/forms/d/e/1FAIpQLSdT39aJVeOEVglhnYG-OY7FNLcftpFhlBzjnY3T07j1ykHJvg/viewform" target="_blank" rel="noopener noreferrer">お問い合わせフォーム</a>よりご連絡ください。</p>
+
+    <p class="updated">制定日：2026年3月26日</p>
+  </div>
+</BaseLayout>
+
+<style>
+  .privacy {
+    max-width: 680px;
+  }
+
+  .privacy h1 {
+    font-size: 1.6em;
+    margin-bottom: 1em;
+  }
+
+  .privacy h2 {
+    font-size: 1.05em;
+    font-weight: 700;
+    margin: 2em 0 0.5em;
+    border-bottom: 1px solid rgb(var(--gray-light));
+    padding-bottom: 0.3em;
+  }
+
+  .privacy p {
+    color: rgb(var(--gray-dark));
+    line-height: 1.8;
+  }
+
+  .updated {
+    margin-top: 3em;
+    font-size: 0.88em;
+    color: rgb(var(--gray));
+  }
+</style>
